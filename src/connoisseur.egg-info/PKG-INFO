@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: connoisseur
+Version: 0.1.0
+Summary: Multimodal restaurant/recipe pipeline, RAG, multi-agent system and MCP assistant (DeepSeek-powered)
+Requires-Python: >=3.10
+Requires-Dist: openai>=1.40
+Requires-Dist: python-dotenv>=1.0
+Requires-Dist: requests>=2.31
+Requires-Dist: tenacity>=8.2
+Requires-Dist: numpy
+Requires-Dist: pillow
+Provides-Extra: rag
+Requires-Dist: torch; extra == "rag"
+Requires-Dist: transformers; extra == "rag"
+Requires-Dist: sentence-transformers>=2.7; extra == "rag"
+Requires-Dist: chromadb; extra == "rag"
+Provides-Extra: agents
+Requires-Dist: langchain-core; extra == "agents"
+Requires-Dist: langchain-openai; extra == "agents"
+Requires-Dist: gradio<6,>=5; extra == "agents"
+Provides-Extra: mcp
+Requires-Dist: fastmcp; extra == "mcp"
+Requires-Dist: mcp; extra == "mcp"
+Requires-Dist: anthropic; extra == "mcp"
+Requires-Dist: langchain-core; extra == "mcp"
+Requires-Dist: langchain-openai; extra == "mcp"
+Requires-Dist: gradio<6,>=5; extra == "mcp"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Provides-Extra: all
+Requires-Dist: connoisseur[agents,mcp,rag]; extra == "all"
