@@ -6,6 +6,48 @@ from pathlib import Path
 from dotenv import load_dotenv
 
 # src/connoisseur/config.py -> parents[2] is the project root (works for `pip install -e .`)
+#
+# *******************************************************************************************
+# __file__: A Python built-in variable, pronounced as "dunder file"
+#           It contains the file path of the script currently being executed
+#           for this script, __file__ is could be as below depending how it is loaded and run:
+#            1. /home/develop/projects/restaurant_companion/src/connoisseur/config.py
+#            2. src/connoisseur/config.py
+#            3. ../src/connoisseur/config.py
+#
+# Path(__file__): This creates a pathlib.Path object and 
+#                 initialize it with the file path string of your current running script.
+#
+# Path.resolve(): the method resolves any relative path segments (such as . and ..) 
+#                 and any symbolic links in the object Path,
+#                 returns the canonical absolute path as a new Path object.
+#
+# Path.parents: a immutable sequence object that contains the entire sequence of ancestor directories
+#               e.g., path = Path("/usr/local/bin/python3")
+#               .parents[0]: immediate parent "/usr/local/bin"
+#               .parents[1]: grandparent parent "/usr/local"
+#               .parents[2]: great-grandparent "/usr"
+#
+# Path(__file__).resolve().parents[2]: /home/develop/projects/restaurant_companion
+#
+# os.environ.get("CONNOISSEUR_HOME"): 
+#      Read the value of a environment variable CONNOISSEUR_HOME
+#      This can work both in production and development if CONNOISSEUR_HOME is set.
+#       
+# Path(__file__).resolve().parents[2]: 
+#       Works in development if run from IDE, directly from project folder or "pip install -e ."
+#       Does not work in production mode after run "pip install ."
+#       because config.py is copied to ~/.venv/lib/python3.x/site_packages/connoisseur with "pip install ."
+#       .parents[2] resolves to  ~/.venv/lib/python3.x and fails to be correct project root. 
+#
+# Path(os.environ.get("CONNOISSEUR_HOME") or Path(__file__).resolve().parents[2]):
+#    If os.environ.get("CONNOISSEUR_HOME") returns non empty value, the part after "or" is ignored.
+#    Therefore the part before "or" works on production server (via "CONNOISSEUR_HOME")
+#    the part after "or" works on development server when "CONNOISSEUR_HOME" is not set
+#
+# load_dotenv: a function in dotenv for reading key-value pairs from a .env file
+#              and adds them to your application's environment variables (os.environ).
+
 PROJECT_ROOT = Path(os.environ.get("CONNOISSEUR_HOME") or Path(__file__).resolve().parents[2])
 load_dotenv(PROJECT_ROOT / ".env")
 
