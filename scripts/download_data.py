@@ -25,6 +25,8 @@ FILES = {
         f"{BASE}/clYj6XUC9urkUzWtiDH0Cw/structured-restaurant-data.json",
     config.MCP_DATA_DIR / "augmented-user-review.json":
         f"{BASE}/q5CWrWtux9-NmnkiWOrQBw/augmented-user-review.json",
+    config.RAW_DIR / "Recipes.json":
+        f"{BASE}/hpTjb6liKBLVHQK0UgMi5A/Recipes.json",
 }
 
 
