@@ -27,6 +27,8 @@ FILES = {
         f"{BASE}/q5CWrWtux9-NmnkiWOrQBw/augmented-user-review.json",
     config.RAW_DIR / "Recipes.json":
         f"{BASE}/hpTjb6liKBLVHQK0UgMi5A/Recipes.json",
+    config.RAW_DIR / "Synthetic-User-Reviews.json":
+        f"{BASE}/fQUs9wQ6aB6ts6fmkD2V2w/Synthetic-User-Reviews.json",
 }
 
 
